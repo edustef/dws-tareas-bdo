@@ -1,6 +1,5 @@
 <?php
 
-include_once('createTasksHTML.php');
 include_once('../config/Database.php');
 include_once('../model/Tarea.php');
 
@@ -9,8 +8,6 @@ $db = Database::connect();
 Tarea::init($db);
 
 $tareas = Tarea::getTareas();
-
-// title, fecha limite, prioridad
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
   switch ($_POST['action']) {
@@ -38,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
       break;
   }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  echo $tareas[0]->title;
+  VistaIndex::render($tareas);
 }
 
 

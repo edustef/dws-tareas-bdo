@@ -3,7 +3,6 @@
 class Tarea
 {
   private static $conn;
-  private static $table = 'tareas';
 
   public $id;
   public $title;
@@ -15,7 +14,7 @@ class Tarea
     self::$conn = $db;
   }
 
-  public function __construct($id, $title, $priority, $fetcha)
+  public function __construct($id = null , $title = null, $priority = null, $fetcha = null)
   {
     $this->id = $id;
     $this->title = $title;
@@ -27,39 +26,32 @@ class Tarea
   public static function getTareas()
   {
     $tareas = array();
+    $query = 'SELECT * FROM tareas';
 
-    $query = 'SELECT * FROM :table';
+    try {
 
-    $stmt = self::$conn->prepare($query);
-
-    $stmt->execute(['table' => self::$table]);
-
-    $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE);
-
-    if ($stmt->rowCount() > 0) {
-      while ($tarea = $stmt->fetch()) {
-        $tareas[] = $tarea;
-      }
+      $stmt = self::$conn->prepare($query);
+      $stmt->execute();
+      $tareas = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Tarea');
+    } catch (PDOException $e) {
+      echo $e->getMessage();
     }
 
     return $tareas;
   }
 
-  public static function getTarea()
+  public static function getTarea($id)
   {
     $tarea = array();
 
-    $query = 'SELECT * FROM :table';
+    $query = 'SELECT * FROM tareas WHERE ID = :id';
 
     $stmt = self::$conn->prepare($query);
 
-    $stmt->execute(['table' => self::$table]);
+    $stmt->execute(['id' => $id]);
 
-    if ($stmt->rowCount() > 0) {
-      while ($tarea = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $tarea = $tarea;
-      }
-    }
+    $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Tarea');
+    $tarea = $stmt->fetch(PDO::FETCH_ASSOC);
 
     return $tarea;
   }
