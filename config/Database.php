@@ -3,12 +3,12 @@
 class Database
 {
   private static $host = 'localhost';
-  private static $db_name = 'tareas';
   private static $username = 'admin';
+  private static $db_name = 'tareas';
   private static $password = '290312';
   private static $conn = null;
 
-  public static function connect()
+  protected static function connect()
   {
     self::$conn = null;
 
@@ -25,5 +25,10 @@ class Database
     }
 
     return self::$conn;
+  }
+
+  protected static function disconnect()
+  {
+    self::$conn = null;
   }
 }

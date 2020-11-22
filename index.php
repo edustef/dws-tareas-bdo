@@ -12,11 +12,11 @@
 <body <div class="box">
 	<div class="level is-mobile">
 		<div class="level-left">
-			<h2 class="title is-4">Tasks</h2>
+			<h2 class="title is-4">Tareas</h2>
 		</div>
 		<div class="level-right">
-			<button id="clear-tasks" class="ml-6 button is-danger is-light">
-				<span>Clear all tasks</span>
+			<button id="clear-tareas" class="ml-6 button is-danger is-light">
+				<span>Borrar tareas</span>
 				<span class="icon">
 					<i class="fas fa-trash"></i>
 				</span>
@@ -24,44 +24,44 @@
 		</div>
 	</div>
 
-	<form id="add-task" action="" method="POST" style="max-width: 600px;">
+	<form id="add-tarea" action="" method="POST" style="max-width: 600px;">
 		<div class="field has-addons">
 			<div class="control">
 				<span class="select">
-					<select name="priority">
-						<option disabled>- Priority -</option>
-						<option value="3"><span class="has-text-primary">High</span></option>
-						<option value="2" selected>Medium</option>
-						<option value="1">Low</option>
+					<select name="prioridad">
+						<option disabled>- Prioridad -</option>
+						<option value="3"><span class="has-text-primary">Alto</span></option>
+						<option value="2" selected>Medio</option>
+						<option value="1">Bajo</option>
 					</select>
 				</span>
 			</div>
 			<div class="control is-expanded has-icons-left">
-				<input id="task-input" required name="title" class="input" type="text" placeholder="Add task">
+				<input id="tarea-input" required name="titulo" class="input" type="text" placeholder="Añadir tarea">
 				<span class="icon is-small is-left">
 					<i class="fas fa-tasks"></i>
 				</span>
 			</div>
 			<div class="control">
-				<button id="add-task-btn" type="submit" class="button is-primary" type="submit">Add task</button>
+				<button id="add-tarea-btn" type="submit" class="button is-primary" type="submit">Añadir tarea</button>
 			</div>
 		</div>
-		<input id="date" required name="due-date" type="date">
+		<input id="fetcha" required name="fetcha" type="date">
 	</form>
 	<hr>
 	<div>
-		<button id="sort-tasks" class="button mb-4">
+		<button id="sort-tareas" class="button mb-4">
 			<span class="icon is-small">
 				<i class="fas fa-sort-amount-down"></i>
 			</span>
 			<span>
-				Priority
+				Prioridad
 			</span>
 		</button>
-		<form id="filter-date" action="" method="POST">
+		<form id="filter-fetcha" action="" method="POST">
 			<div class="field has-addons">
 				<div class="control" style="width:260px">
-					<input required name="date" class="input" type="date" placeholder="Add task">
+					<input required name="fetcha" class="input" type="date">
 				</div>
 				<div class="control">
 					<button type="submit" class="button is-primary mb-4">
@@ -69,12 +69,12 @@
 							<i class="fas fa-filter"></i>
 						</span>
 						<span>
-							Filter Date
+							Filtrar Fetcha
 						</span>
 					</button>
 				</div>
 			</div>
-			<div id="task-list">
+			<div id="tarea-list">
 			</div>
 		</form>
 	</div>
@@ -96,8 +96,7 @@
 			});
 		});
 	</script>
-	<script src="scripts/Modal.class.js"></script>
-	<script src="scripts/manageTasks.js"></script>
+	<script src="scripts/manageTareas.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 </body>
 
